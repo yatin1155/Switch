@@ -1,0 +1,29 @@
+.wrapper h1{
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Arizonia';
+}
+
+.img-area{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.single-img {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+}
+
+.single-img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
