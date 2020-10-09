@@ -1,7 +1,13 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #262626;
+}
 .wrapper h1{
     text-align: center;
     font-size: 40px;
     font-family: 'Arizonia';
+    color: #FFFFFF;
 }
 
 .img-area{
@@ -12,11 +18,14 @@
     justify-content: center;
 }
 
-.single-img {
+.single-img, .box{
     position: relative;
     width: 200px;
     height: 200px;
     margin: 5px;
+    background: #FFFFFF;
+
+    overflow: hidden;
 }
 
 .single-img img{
@@ -26,4 +35,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 1s;
 }
+
+.single-img:hover img{
+  transform: scale(1.1);
+}
+/* 
+.single-img, .box .imgBox{
+    position: relative;
+}
+
+.single-img, .box .imgBox img{
+    max-width: 100%;
+} */
