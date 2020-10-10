@@ -28,9 +28,9 @@ var switchModule = (function () {
         for(let item of imageList){
             var str = '';
             str = `
-            <div class="single-img">
-                <div class="imgBox">
-                    <img src="${item.imageUrl}" alt="">
+            <div class="single-img normalImage">
+                <div class="imgBox ">
+                    <img class="" src="${item.imageUrl}" alt="">
                 </div>
 
                 <div class="details">
@@ -58,7 +58,7 @@ var switchModule = (function () {
         $("#spinGallery").off("click");
         $("#spinGallery").on("click",()=>{
             imageList.sort(() => Math.random() - 0.5);
-            
+            addImages();
         });
     };
 
