@@ -51,8 +51,14 @@ var switchModule = (function () {
         $("#gallery button").off("click");
         $("#gallery button").on("click", (event) => {
             var id = $(event.target).attr("id");
-            imageList.splice(this.id, 1);
+            imageList.splice(id, 1);
             addImages();
+        });
+
+        $("#spinGallery").off("click");
+        $("#spinGallery").on("click",()=>{
+            imageList.sort(() => Math.random() - 0.5);
+            
         });
     };
 
