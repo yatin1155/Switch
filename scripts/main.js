@@ -16,21 +16,30 @@ var switchModule = (function () {
             let obj = {};
             obj['index'] = i;
             obj['imageUrl'] = links[i];
-            obj['text'] = "Image " + i;
+            obj['text'] = "Image " + (i+1);
             imageList.push(obj);
         }
-        addImages();
+        // addImages();
     };
 
     var addImages = () =>{
         for(let item of imageList){
             var str = '';
-
             str = `
             <div class="single-img">
-                <img src="${item.imageUrl}" alt="">
+                <div class="imgBox">
+                    <img src="${item.imageUrl}" alt="">
+                </div>
+
+                <div class="details">
+                    <div class="content">
+                        <h2>${item.text}</h2>
+                        <p>My name is Blaah Blaah </p>
+                    </div>
+
+                </div>
             </div>
-            `;
+            `
             $gallery.append(str);
         }
     }
