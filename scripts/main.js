@@ -1,6 +1,6 @@
 var switchModule = (function () {
     var imageList =[];
-    var imageCount = 14;  //count of images to load
+    var imageCount = 17;  //count of images to load
     var $gallery = $("#gallery");
 
     var loadImages = () => {
@@ -16,7 +16,8 @@ var switchModule = (function () {
             let obj = {};
             obj['index'] = i;
             obj['imageUrl'] = links[i];
-            obj['text'] = "Image " + (i+1);
+            obj['text'] = "Image " + i;
+            obj['info'] = links[i].split("breeds").pop().split("/")[1];
             imageList.push(obj);
         }
         addImages();
@@ -25,33 +26,46 @@ var switchModule = (function () {
     var addImages = () =>{
 
         $gallery.empty();
-        for(let item of imageList){
-            var str = '';
-            str = `
-            <div class="single-img normalImage">
-                <div class="imgBox ">
-                    <img class="" src="${item.imageUrl}" alt="">
-                </div>
-
-                <div class="details">
-                    <div class="content">
-                        <h2>${item.text}</h2>
-                        <button id="${item.index}"><i class="fa fa-trash"></i></button>  
+        if(imageList.length !== 0){
+            for(let item of imageList){
+                var str = '';
+                str = `
+                <div class="single-img normalImage">
+                    <div class="imgBox ">
+                        <img class="" src="${item.imageUrl}" alt="">
                     </div>
-
+    
+                    <div class="details">
+                        <div class="content">
+                            <h2>${item.info.toUpperCase()}</h2>
+                            <button id="${item.index}">Delete</i></button>  
+                        </div>
+    
+                    </div>
                 </div>
-            </div>
-            `
-            $gallery.append(str);
+                `
+                $gallery.append(str);
+            }
+            eventListerners();
+        } else{
+            $gallery.append("<div><h1>No images to show. Please reload.</h1></div>");
         }
-        eventListerners();
+        
     }
 
     var eventListerners= ()=>{
         $("#gallery button").off("click");
         $("#gallery button").on("click", (event) => {
+        
             var id = $(event.target).attr("id");
-            imageList.splice(id, 1);
+            var filteredPeople = imageList.filter((obj)=>{
+                if(obj.index == id){
+                    return false;
+                }else{
+                    return true;
+                }
+            });
+            imageList = filteredPeople;
             addImages();
         });
 
