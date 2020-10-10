@@ -19,10 +19,12 @@ var switchModule = (function () {
             obj['text'] = "Image " + (i+1);
             imageList.push(obj);
         }
-        // addImages();
+        addImages();
     };
 
     var addImages = () =>{
+
+        $gallery.empty();
         for(let item of imageList){
             var str = '';
             str = `
@@ -34,7 +36,7 @@ var switchModule = (function () {
                 <div class="details">
                     <div class="content">
                         <h2>${item.text}</h2>
-                        <p>My name is Blaah Blaah </p>
+                        <button id="${item.index}"><i class="fa fa-trash"></i></button>  
                     </div>
 
                 </div>
@@ -42,7 +44,17 @@ var switchModule = (function () {
             `
             $gallery.append(str);
         }
+        eventListerners();
     }
+
+    var eventListerners= ()=>{
+        $("#gallery button").off("click");
+        $("#gallery button").on("click", (event) => {
+            var id = $(event.target).attr("id");
+            imageList.splice(this.id, 1);
+            addImages();
+        });
+    };
 
     var init = () => {
         loadImages();
